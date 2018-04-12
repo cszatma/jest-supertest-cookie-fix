@@ -17,6 +17,8 @@ function fixedSupertestAgent(agent) {
             'Either the agent type or an instance of agent must be passed to fixedSupertestAgent.'
         );
     }
+
+    return agent;
 }
 
 /**
