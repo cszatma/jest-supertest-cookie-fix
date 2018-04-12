@@ -48,6 +48,7 @@
     "clean": "rm -rf lib",
     "eslint": "eslint --fix \"{src,test}/**/*.js\"",
     "precommit": "lint-staged",
+    "prepublish": "yarn run build",
     "prettier": "prettier --write \"{src,test}/**/*.js\""
   }
 }
