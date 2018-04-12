@@ -22,7 +22,7 @@
     "url": "https://github.com/cszatma/jest-supertest-cookie-fix/issues"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "engines": {
     "node": ">= 6"
   },
