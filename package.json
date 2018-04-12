@@ -1,6 +1,6 @@
 {
   "name": "jest-supertest-cookie-fix",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Fixes an issue with supertest where cookies are not set properly when testing with jest.",
   "keywords": [
     "jest cookie fix",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "engines": {
-    "node": ">= 6"
+    "node": ">= 7.4"
   },
   "files": [
     "lib/"
