@@ -29,16 +29,7 @@ const agent = require('jest-supertest-cookie-fix');
 agent(app).get('/').expect(200);
 ```
 
-However if can also import `fixedSupertestAgent()` and pass it the agent yourself.
-
-```javascript
-const request = require('supertest');
-const fixedSupertestAgent = require('jest-supertest-cookie-fix').fixedSupertestAgent;
-
-const agent = fixedSupertestAgent(request.agent);
-```
-
-Or you can pass an agent instance if you wish.
+You can also import `fixedSupertestAgent()` and pass it an instance of an agent.
 
 ```javascript
 const request = require('supertest');
