@@ -1,23 +1,49 @@
-const request = require('supertest');
+const Agent = require('supertest').agent;
+
+/**
+ * Initializes a new supertest agent which its _saveCookies method
+ * fixed to work with jest.
+ * @param {Function|Server} app
+ * @param {Object} options
+ * @returns {FixedAgent}
+ * @constructor
+ * @api public
+ */
+function FixedAgent(app, options) {
+    if (!(this instanceof FixedAgent)) {
+        return new FixedAgent(app, options);
+    }
+
+    Agent.call(this, app, options);
+}
+
+/**
+ * Copy Agent's prototype to FixedAgent.
+ * @type {Agent}
+ */
+FixedAgent.prototype = Object.create(Agent.prototype);
+
+/**
+ * Replace `FixedAgent._saveCookies`.
+ * @type {fixedSaveCookies}
+ * @private
+ */
+FixedAgent.prototype._saveCookies = fixedSaveCookies;
 
 /**
  * Replaces the agent's existing _saveCookies function with one that sets the cookies properly when using jest.
- * @param {Agent} agent - Either the Agent type or an Agent instance.
+ * @param {Agent} agent - An Agent instance.
+ * @api public
  */
 function fixedSupertestAgent(agent) {
-    if (
-        typeof agent === 'function' &&
-        typeof agent.prototype._saveCookies === 'function'
-    ) {
-        agent.prototype._saveCookies = fixedSaveCookies;
-    } else if (agent instanceof request.agent) {
-        agent._saveCookies = fixedSaveCookies;
-    } else {
+    // Make sure agent is an instance of Agent.
+    if (!(agent instanceof Agent)) {
         throw new TypeError(
             'Either the agent type or an instance of agent must be passed to fixedSupertestAgent.'
         );
     }
 
+    agent._saveCookies = fixedSaveCookies;
     return agent;
 }
 
@@ -40,12 +66,7 @@ function fixedSaveCookies(res) {
 }
 
 /**
- * Create a default fixed version to use.
+ * Export the FixedAgent type along with the fixedSupertestAgent function.
  */
-const fixedAgent = fixedSupertestAgent(request.agent);
-
-/**
- * Export the fixedSupertestAgent function and the default fixedAgent.
- */
-exports = module.exports = fixedAgent;
+exports = module.exports = FixedAgent;
 exports.fixedSupertestAgent = fixedSupertestAgent;
