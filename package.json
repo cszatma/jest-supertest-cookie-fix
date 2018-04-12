@@ -1,0 +1,53 @@
+{
+  "name": "jest-supertest-cookie-fix",
+  "version": "0.1.0",
+  "description": "Fixes an issue with supertest where cookies are not set properly when testing with jest.",
+  "keywords": [
+    "jest cookie fix",
+    "supertest jest cookie",
+    "supertest cookie fix",
+    "supertest jest cookie fix",
+    "cookie fix"
+  ],
+  "author": {
+    "name": "Christopher Szatmary",
+    "email": "cs@christopherszatmary.com",
+    "url": "https://christopherszatmary.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cszatma/jest-supertest-cookie-fix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cszatma/jest-supertest-cookie-fix/issues"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 6"
+  },
+  "files": [
+    "lib/"
+  ],
+  "dependencies": {
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.11.1"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "clean": "rm -rf lib",
+    "eslint": "eslint --fix \"{src,test}/**/*.js\"",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write \"{src,test}/**/*.js\""
+  }
+}
