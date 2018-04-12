@@ -38,7 +38,12 @@ function fixedSaveCookies(res) {
 }
 
 /**
- * Export the fixedSupertestAgent function.
+ * Create a default fixed version to use.
  */
-exports = module.exports = fixedSupertestAgent;
+const fixedAgent = fixedSupertestAgent(request.agent);
+
+/**
+ * Export the fixedSupertestAgent function and the default fixedAgent.
+ */
+exports = module.exports = fixedAgent;
 exports.fixedSupertestAgent = fixedSupertestAgent;
